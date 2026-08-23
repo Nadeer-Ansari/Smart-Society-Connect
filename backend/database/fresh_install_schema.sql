@@ -632,3 +632,15 @@ INSERT INTO roles (role_name, role_description) VALUES
   ('SECURITY', 'Security Guard'),
   ('VISITOR', 'Temporary Visitor'),
   ('ACCOUNTANT', 'Society Accountant');
+
+-- ============================================================
+-- INITIAL ROLE DATA
+-- Required by authentication and role-based access control
+-- ============================================================
+
+INSERT IGNORE INTO roles (role_name, role_description) VALUES
+('ADMIN', 'Administrator'),
+('SECRETARY', 'Society Secretary'),
+('RESIDENT', 'Society Resident'),
+('SECURITY', 'Security Personnel'),
+('ACCOUNTANT', 'Society Accountant');
