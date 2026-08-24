@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS announcements (
   publish_at DATETIME NOT NULL,
   expires_at DATETIME NULL,
   published TINYINT(1) NOT NULL DEFAULT 1,
-  created_by INT UNSIGNED NOT NULL,
+  created_by INT NOT NULL,
   created_at DATETIME NOT NULL,
   INDEX idx_announcement_publish_expiry (publish_at, expires_at),
   INDEX idx_announcement_audience (audience)
@@ -633,14 +633,3 @@ INSERT INTO roles (role_name, role_description) VALUES
   ('VISITOR', 'Temporary Visitor'),
   ('ACCOUNTANT', 'Society Accountant');
 
--- ============================================================
--- INITIAL ROLE DATA
--- Required by authentication and role-based access control
--- ============================================================
-
-INSERT IGNORE INTO roles (role_name, role_description) VALUES
-('ADMIN', 'Administrator'),
-('SECRETARY', 'Society Secretary'),
-('RESIDENT', 'Society Resident'),
-('SECURITY', 'Security Personnel'),
-('ACCOUNTANT', 'Society Accountant');
