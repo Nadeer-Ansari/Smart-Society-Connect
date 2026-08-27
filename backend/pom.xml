@@ -58,6 +58,13 @@
         <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
 
+    <!-- Resend HTTP API for cloud OTP email delivery -->
+    <dependency>
+        <groupId>com.resend</groupId>
+        <artifactId>resend-java</artifactId>
+        <version>4.11.0</version>
+    </dependency>
+
     <!-- MySQL Driver -->
     <dependency>
         <groupId>com.mysql</groupId>
