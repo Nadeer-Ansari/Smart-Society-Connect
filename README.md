@@ -4,9 +4,17 @@
 
 **Smart Society Connect** is a full-stack residential society management platform that centralizes day-to-day society operations through secure, role-based workflows for administrators, secretaries, residents, security personnel, and accountants.
 
-> **Status:** Completed Full-Stack Academic Project  
+> **Status:** Completed Full-Stack Academic Project — Cloud Deployed  
 > **Program:** PGCP-AC — Post Graduate Certificate Programme in Advanced Computing  
 > **Team Size:** 5
+
+## 🌐 Live Demo
+
+- **Live Application:** https://smart-society-connect-frontend.onrender.com
+- **Backend API:** https://smart-society-connect-backend.onrender.com
+- **Swagger / OpenAPI:** https://smart-society-connect-backend.onrender.com/swagger-ui/index.html
+
+> **Demo note:** The application is hosted for project demonstration. Registration/OTP delivery depends on the configured external email provider. Free hosting instances may also require a short warm-up on the first request after inactivity.
 
 ---
 
@@ -44,8 +52,8 @@
 **Frontend:** React.js, Vite, JavaScript, Tailwind CSS, Axios, React Router  
 **Backend:** Java 17+, Spring Boot 3, Spring Security, Spring Data JPA, Hibernate, JWT, Maven  
 **Database:** MySQL 8  
-**Integrations:** Gmail SMTP / JavaMail, Razorpay  
-**DevOps:** Git, GitHub, Docker, Nginx, Vercel/Netlify and cloud deployment
+**Integrations:** Resend HTTP API for OTP email, Razorpay  
+**DevOps / Deployment:** Git, GitHub, Docker, Render, Aiven MySQL
 
 ---
 
@@ -95,6 +103,7 @@ Smart-Society-Connect/
 │   ├── src/
 │   ├── database/
 │   ├── pom.xml
+│   ├── Dockerfile
 │   ├── mvnw
 │   └── mvnw.cmd
 ├── frontend/
@@ -108,6 +117,8 @@ Smart-Society-Connect/
 │   └── screenshots/
 │       ├── White/
 │       └── Black/
+├── .env.example
+├── docker-compose.yml
 ├── .gitignore
 └── README.md
 ```
@@ -121,82 +132,36 @@ The application supports both **Light (White)** and **Dark (Black)** themes.
 ## ☀️ Light / White Theme
 
 <table>
-<tr>
-<td width="50%"><b>Accountant</b><br><img src="docs/screenshots/White/Accountant.png" alt="Accountant - White theme" width="100%"></td>
-<td width="50%"><b>Admin</b><br><img src="docs/screenshots/White/Admin.png" alt="Admin - White theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Announcements</b><br><img src="docs/screenshots/White/Announcements.png" alt="Announcements - White theme" width="100%"></td>
-<td width="50%"><b>Billing</b><br><img src="docs/screenshots/White/Billing.png" alt="Billing - White theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Complaint</b><br><img src="docs/screenshots/White/Complaint.png" alt="Complaint - White theme" width="100%"></td>
-<td width="50%"><b>Documents</b><br><img src="docs/screenshots/White/Documents.png" alt="Documents - White theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Login</b><br><img src="docs/screenshots/White/Login.png" alt="Login - White theme" width="100%"></td>
-<td width="50%"><b>Meetings</b><br><img src="docs/screenshots/White/Meetings.png" alt="Meetings - White theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>My Profile</b><br><img src="docs/screenshots/White/My%20Profile.png" alt="My Profile - White theme" width="100%"></td>
-<td width="50%"><b>Registration</b><br><img src="docs/screenshots/White/Registration.png" alt="Registration - White theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Resident & Flats</b><br><img src="docs/screenshots/White/Resident%20&%20Flats.png" alt="Resident & Flats - White theme" width="100%"></td>
-<td width="50%"><b>Residents</b><br><img src="docs/screenshots/White/Residents.png" alt="Residents - White theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Secretary</b><br><img src="docs/screenshots/White/Secretary.png" alt="Secretary - White theme" width="100%"></td>
-<td width="50%"><b>Security Guard</b><br><img src="docs/screenshots/White/Security%20Guard.png" alt="Security Guard - White theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>User Approvals</b><br><img src="docs/screenshots/White/User%20Approvals.png" alt="User Approvals - White theme" width="100%"></td>
-<td width="50%"><b>Visitors</b><br><img src="docs/screenshots/White/Visitors.png" alt="Visitors - White theme" width="100%"></td>
-</tr>
+<tr><td width="50%"><b>Accountant</b><br><img src="docs/screenshots/White/Accountant.png" width="100%"></td><td width="50%"><b>Admin</b><br><img src="docs/screenshots/White/Admin.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Announcements</b><br><img src="docs/screenshots/White/Announcements.png" width="100%"></td><td width="50%"><b>Billing</b><br><img src="docs/screenshots/White/Billing.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Complaint</b><br><img src="docs/screenshots/White/Complaint.png" width="100%"></td><td width="50%"><b>Documents</b><br><img src="docs/screenshots/White/Documents.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Login</b><br><img src="docs/screenshots/White/Login.png" width="100%"></td><td width="50%"><b>Meetings</b><br><img src="docs/screenshots/White/Meetings.png" width="100%"></td></tr>
+<tr><td width="50%"><b>My Profile</b><br><img src="docs/screenshots/White/My%20Profile.png" width="100%"></td><td width="50%"><b>Registration</b><br><img src="docs/screenshots/White/Registration.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Resident & Flats</b><br><img src="docs/screenshots/White/Resident%20&%20Flats.png" width="100%"></td><td width="50%"><b>Residents</b><br><img src="docs/screenshots/White/Residents.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Secretary</b><br><img src="docs/screenshots/White/Secretary.png" width="100%"></td><td width="50%"><b>Security Guard</b><br><img src="docs/screenshots/White/Security%20Guard.png" width="100%"></td></tr>
+<tr><td width="50%"><b>User Approvals</b><br><img src="docs/screenshots/White/User%20Approvals.png" width="100%"></td><td width="50%"><b>Visitors</b><br><img src="docs/screenshots/White/Visitors.png" width="100%"></td></tr>
 </table>
 
 ## 🌙 Dark / Black Theme
 
 <table>
-<tr>
-<td width="50%"><b>Accountant</b><br><img src="docs/screenshots/Black/Accountant.png" alt="Accountant - Black theme" width="100%"></td>
-<td width="50%"><b>Admin</b><br><img src="docs/screenshots/Black/Admin.png" alt="Admin - Black theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Announcement</b><br><img src="docs/screenshots/Black/Announcement.png" alt="Announcement - Black theme" width="100%"></td>
-<td width="50%"><b>Billing</b><br><img src="docs/screenshots/Black/Billing.png" alt="Billing - Black theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Complaints</b><br><img src="docs/screenshots/Black/Complaints.png" alt="Complaints - Black theme" width="100%"></td>
-<td width="50%"><b>Documents</b><br><img src="docs/screenshots/Black/Documents.png" alt="Documents - Black theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Login</b><br><img src="docs/screenshots/Black/Login.png" alt="Login - Black theme" width="100%"></td>
-<td width="50%"><b>Meetings</b><br><img src="docs/screenshots/Black/Meetings.png" alt="Meetings - Black theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>My Profile</b><br><img src="docs/screenshots/Black/My%20Profile.png" alt="My Profile - Black theme" width="100%"></td>
-<td width="50%"><b>Registration</b><br><img src="docs/screenshots/Black/Registration.png" alt="Registration - Black theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Resident & Flats</b><br><img src="docs/screenshots/Black/Resident%20&%20Flats.png" alt="Resident & Flats - Black theme" width="100%"></td>
-<td width="50%"><b>Resident</b><br><img src="docs/screenshots/Black/Resident.png" alt="Resident - Black theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>Secretary</b><br><img src="docs/screenshots/Black/Secretary.png" alt="Secretary - Black theme" width="100%"></td>
-<td width="50%"><b>Security Guard</b><br><img src="docs/screenshots/Black/Security%20Guard.png" alt="Security Guard - Black theme" width="100%"></td>
-</tr>
-<tr>
-<td width="50%"><b>User Approvals</b><br><img src="docs/screenshots/Black/User%20Approvals.png" alt="User Approvals - Black theme" width="100%"></td>
-<td width="50%"><b>Visitors</b><br><img src="docs/screenshots/Black/Visitors.png" alt="Visitors - Black theme" width="100%"></td>
-</tr>
+<tr><td width="50%"><b>Accountant</b><br><img src="docs/screenshots/Black/Accountant.png" width="100%"></td><td width="50%"><b>Admin</b><br><img src="docs/screenshots/Black/Admin.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Announcement</b><br><img src="docs/screenshots/Black/Announcement.png" width="100%"></td><td width="50%"><b>Billing</b><br><img src="docs/screenshots/Black/Billing.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Complaints</b><br><img src="docs/screenshots/Black/Complaints.png" width="100%"></td><td width="50%"><b>Documents</b><br><img src="docs/screenshots/Black/Documents.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Login</b><br><img src="docs/screenshots/Black/Login.png" width="100%"></td><td width="50%"><b>Meetings</b><br><img src="docs/screenshots/Black/Meetings.png" width="100%"></td></tr>
+<tr><td width="50%"><b>My Profile</b><br><img src="docs/screenshots/Black/My%20Profile.png" width="100%"></td><td width="50%"><b>Registration</b><br><img src="docs/screenshots/Black/Registration.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Resident & Flats</b><br><img src="docs/screenshots/Black/Resident%20&%20Flats.png" width="100%"></td><td width="50%"><b>Resident</b><br><img src="docs/screenshots/Black/Resident.png" width="100%"></td></tr>
+<tr><td width="50%"><b>Secretary</b><br><img src="docs/screenshots/Black/Secretary.png" width="100%"></td><td width="50%"><b>Security Guard</b><br><img src="docs/screenshots/Black/Security%20Guard.png" width="100%"></td></tr>
+<tr><td width="50%"><b>User Approvals</b><br><img src="docs/screenshots/Black/User%20Approvals.png" width="100%"></td><td width="50%"><b>Visitors</b><br><img src="docs/screenshots/Black/Visitors.png" width="100%"></td></tr>
 </table>
 
 ---
 
 ## ⚙️ Environment Configuration
 
-Deployment-sensitive values are supplied through environment variables:
+This repository does **not** contain production credentials. After cloning, create your own environment configuration from `.env.example` and provide your own database, JWT, email and payment credentials.
+
+Important variables include:
 
 ```text
 DB_URL
@@ -204,28 +169,53 @@ DB_USERNAME
 DB_PASSWORD
 APP_JWT_SECRET
 APP_CORS_ALLOWED_ORIGINS
-MAIL_HOST
-MAIL_PORT
-MAIL_USERNAME
-MAIL_PASSWORD
+RESEND_API_KEY
+RESEND_FROM_EMAIL
 RAZORPAY_KEY_ID
 RAZORPAY_KEY_SECRET
 RAZORPAY_WEBHOOK_SECRET
 ```
 
-Use `frontend/.env.example` as the frontend configuration template.
+Frontend configuration is documented in `frontend/.env.example`.
 
-> **Security:** Never commit real `.env` files, database passwords, Gmail app passwords, JWT secrets, Razorpay secrets or private keys.
+> **Security:** Never commit real `.env` files, database passwords, Resend API keys, JWT secrets, Razorpay secrets or private keys.
 
 ---
 
-## ▶️ Run Locally
+## ▶️ Run Locally After Cloning
 
 ### Prerequisites
 
 Java 17+, Node.js/npm, MySQL 8 and Git.
 
-### Backend
+### 1. Clone
+
+```bash
+git clone https://github.com/Nadeer-Ansari/Smart-Society-Connect.git
+cd Smart-Society-Connect
+```
+
+### 2. Database
+
+Create the database and import the supplied fresh-install schema:
+
+```sql
+CREATE DATABASE IF NOT EXISTS smart_society_connect_db;
+```
+
+Then import:
+
+```text
+backend/database/fresh_install_schema.sql
+```
+
+### 3. Configure environment
+
+Copy `.env.example` to `.env` when using Docker, or set the equivalent environment variables in your IDE/terminal. Replace every placeholder with your own values.
+
+For OTP email, create your own Resend API key and configure `RESEND_API_KEY`. For unrestricted recipients, configure `RESEND_FROM_EMAIL` with a sender/domain verified in your own Resend account.
+
+### 4. Backend
 
 ```bash
 cd backend
@@ -246,7 +236,7 @@ Linux/macOS:
 Backend: `http://localhost:8080`  
 Swagger UI: `http://localhost:8080/swagger-ui.html`
 
-### Frontend
+### 5. Frontend
 
 ```bash
 cd frontend
@@ -256,23 +246,15 @@ npm run dev
 
 Frontend: `http://localhost:5173`
 
+The frontend template defaults to local development. For another deployed backend, set `VITE_API_BASE_URL` according to `frontend/.env.example`.
+
 ---
 
 ## 🗄️ Database
 
-Schema and migrations are stored under:
+Schema and migrations are stored under `backend/database/`. The default local database is `smart_society_connect_db`.
 
-```text
-backend/database/
-```
-
-Default local database:
-
-```text
-smart_society_connect_db
-```
-
-Configure database credentials using environment variables before starting the backend.
+Cloud deployment does not lock the repository to Aiven: another developer can provide their own MySQL connection through `DB_URL`, `DB_USERNAME` and `DB_PASSWORD`.
 
 ---
 
@@ -289,23 +271,25 @@ Configure database credentials using environment variables before starting the b
 
 ---
 
-## 🐳 Deployment Roadmap
+## 🐳 Deployment Architecture
 
 ```text
 GitHub
    ↓
 Docker / Containerization
    ↓
-Cloud MySQL Database
+Aiven MySQL
    ↓
-Spring Boot Backend Deployment
+Render Spring Boot Backend
    ↓
-React Frontend Deployment
+Render React Frontend
    ↓
 Production CORS + API Configuration
    ↓
-Live Demo Testing
+Live Demo
 ```
+
+The repository remains portable: Render/Aiven-specific credentials are environment variables rather than hard-coded project values.
 
 ---
 
@@ -324,7 +308,7 @@ Live Demo Testing
 
 ## 🎓 Academic Project
 
-Developed as part of the **PGCP-AC (Post Graduate Certificate Programme in Advanced Computing)** academic project.
+Developed as part of the **PGCP-AC (Post Graduate Certificate Programme in Advanced Computing)** academic project by a **5-member team**.
 
 Smart Society Connect aims to provide a centralized, secure and user-friendly digital platform for residential society operations and communication.
 
@@ -337,7 +321,12 @@ Smart Society Connect aims to provide a centralized, secure and user-friendly di
 ✅ Role-based workflows integrated  
 ✅ Database schema available  
 ✅ Payment integration implemented  
-🔄 GitHub, Docker and cloud deployment preparation in progress
+✅ Dockerized backend  
+✅ Cloud MySQL deployed  
+✅ Backend deployed on Render  
+✅ Frontend deployed on Render  
+✅ Swagger / API documentation deployed  
+⚠️ OTP email delivery depends on external Resend configuration/sender verification
 
 ---
 
