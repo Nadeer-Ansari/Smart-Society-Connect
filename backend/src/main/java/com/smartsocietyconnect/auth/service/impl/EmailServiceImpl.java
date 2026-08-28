@@ -19,15 +19,23 @@ public class EmailServiceImpl implements EmailService {
 
     private static final String EMAIL_SUBJECT = "Smart Society Connect - OTP Verification";
 
-    @Value("${RESEND_API_KEY}")
+    // Values come from application.properties -> environment variables.
+    // This keeps GitHub clones portable and prevents credentials from being hard-coded.
+    @Value("${resend.api-key:}")
     private String resendApiKey;
 
-    @Value("${RESEND_FROM_EMAIL:onboarding@resend.dev}")
+    @Value("${resend.from-email:onboarding@resend.dev}")
     private String fromEmail;
 
     @Override
     @Async
     public void sendOtp(String toEmail, String otpCode) {
+        if (resendApiKey == null || resendApiKey.isBlank()) {
+            log.error("RESEND_API_KEY is not configured. OTP email cannot be sent to: {}", toEmail);
+            throw new IllegalStateException(
+                    "Email service is not configured. Set RESEND_API_KEY in the application environment.");
+        }
+
         log.info("Sending OTP email through Resend to: {}", toEmail);
         try {
             Resend resend = new Resend(resendApiKey);
